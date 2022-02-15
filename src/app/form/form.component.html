@@ -1,0 +1,57 @@
+<div class="card">
+  <div [formGroup]="form">
+    <h4>Time Zone</h4>
+
+    <p-dropdown formControlName="time_zone" [filter]="true" [options]="timezoneList" placeholder="Select a timezone" optionLabel="label" optionValue="tzCode" [showClear]="true"></p-dropdown>
+
+    <h4>When does your timer end? (max 30 days)</h4>
+
+    <p-calendar formControlName="end_time" [showTime]="true" [minDate]="todayDateNoHours"></p-calendar>
+
+    <h4>Font</h4>
+
+    <p-dropdown formControlName="font_name" [filter]="true" [options]="fontList" placeholder="Select a font" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
+
+    <h4>Text</h4>
+
+    <p-checkbox formControlName="show_interval_text" label="Show interval text" [binary]="true"></p-checkbox>
+
+    <div *ngIf="isShowIntervalText">
+      <div class="grid">
+        <div class="col-6 field">
+          <h5>Days Text</h5>
+          <input type="text"  pInputText formControlName="days_text" placeholder="Days text">
+        </div>
+        <div class="col-6 field">
+          <h5>Hours Text</h5>
+          <input type="text"  pInputText formControlName="hours_text" placeholder="Days text">
+        </div>
+        <div class="col-6 field">
+          <h5>Minutes Text</h5>
+          <input type="text"  pInputText formControlName="minutes_text" placeholder="Days text">
+        </div>
+        <div class="col-6 field">
+          <h5>Seconds Text</h5>
+          <input type="text"  pInputText formControlName="seconds_text" placeholder="Days text">
+        </div>
+      </div>
+    </div>
+
+    <h4>Background color</h4>
+
+    <p-colorPicker formControlName="background_color"  [inline]="false" [style]="{'width':'100%'}"></p-colorPicker>
+
+
+    <h4>Text color</h4>
+
+    <p-colorPicker formControlName="font_color"  [inline]="false" [style]="{'width':'100%'}"></p-colorPicker>
+
+    <div class="mt-3">
+      <p-button (onClick)="onSubmit()" type="submit" label="Generate" [disabled]="!form.valid"></p-button>
+    </div>
+
+  </div>
+
+
+
+</div>

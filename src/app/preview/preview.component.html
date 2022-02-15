@@ -1,0 +1,6 @@
+<h4>Preview</h4>
+<img *ngIf="data; else waitingForData" [src]="imageSrc">
+
+<ng-template #waitingForData>
+  <div class="bg-cyan-500 text-white font-bold border-round m-2 flex align-items-center justify-content-center" style="min-width: 200px; min-height: 100px">Set data and generate preview!</div>
+</ng-template>
