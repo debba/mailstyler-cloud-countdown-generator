@@ -86,6 +86,7 @@ export class FormComponent implements OnInit {
     const data = {
       ...this.form.value,
       end_time: moment(this.form.get('end_time')?.value).format('YYYY-MM-DD HH:mm:ss'),
+      show_interval_text: this.form.get('show_interval_text')?.value ? 1 : 0
     }
     this.onGenerate.emit(data);
   }
