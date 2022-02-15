@@ -46,9 +46,15 @@
 
     <p-colorPicker formControlName="font_color"  [inline]="false" [style]="{'width':'100%'}"></p-colorPicker>
 
+
+    <h4>Frame size</h4>
+
+    <p-inputNumber [min]="61" [max]="181" formControlName="frame_size"></p-inputNumber>
+
     <div class="mt-3">
       <p-button (onClick)="onSubmit()" type="submit" label="Generate" [disabled]="!form.valid"></p-button>
     </div>
+
 
   </div>
 

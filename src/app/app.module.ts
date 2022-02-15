@@ -12,7 +12,8 @@ import {InputTextModule} from "primeng/inputtext";
 import {ColorPickerModule} from "primeng/colorpicker";
 import { PreviewComponent } from './preview/preview.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
-import {CodemirrorModule} from "@ctrl/ngx-codemirror";
+import {InputNumberModule} from "primeng/inputnumber";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -30,8 +31,9 @@ import {CodemirrorModule} from "@ctrl/ngx-codemirror";
     BrowserModule,
     ColorPickerModule,
     FormsModule,
-    CodemirrorModule,
-    InputTextareaModule
+    InputTextareaModule,
+    InputNumberModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

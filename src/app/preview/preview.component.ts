@@ -10,6 +10,7 @@ export class PreviewComponent implements OnInit {
   data: any;
   imageSrc: string = '';
   code: string = '';
+  size? : string;
 
   constructor(private _countdownService: CountdownService) { }
 
@@ -18,8 +19,12 @@ export class PreviewComponent implements OnInit {
 
   generatePreview(data: any) {
     this.data = data;
-    this.imageSrc = this._countdownService.getCountdownUrl(data)
-    this.code = `<img src="${this.imageSrc}">`;
+    this._countdownService.getCountdownUrl(data)
+      .subscribe(({url, size}) => {
+        this.size = this._countdownService.formatBytes(size);
+        this.imageSrc = url;
+        this.code = `<img src="${this.imageSrc}">`;
+      });
   }
 
 }

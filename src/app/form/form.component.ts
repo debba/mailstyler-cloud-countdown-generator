@@ -78,7 +78,8 @@ export class FormComponent implements OnInit {
       seconds_text: ['seconds', Validators.required],
       background_color: ['#ffffff', Validators.required],
       font_color: ['#000000', Validators.required],
-      font_name:['Noto', Validators.required]
+      font_name:['Noto', Validators.required],
+      frame_size:[61, Validators.required]
     });
   }
 
