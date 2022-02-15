@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CountdownService} from "../countdown.service";
 
 @Component({
@@ -9,6 +9,7 @@ export class PreviewComponent implements OnInit {
 
   data: any;
   imageSrc: string = '';
+  code: string = '';
 
   constructor(private _countdownService: CountdownService) { }
 
@@ -17,7 +18,8 @@ export class PreviewComponent implements OnInit {
 
   generatePreview(data: any) {
     this.data = data;
-    this.imageSrc = this._countdownService.getCountdownUrl(data);
+    this.imageSrc = this._countdownService.getCountdownUrl(data)
+    this.code = `<img src="${this.imageSrc}">`;
   }
 
 }
