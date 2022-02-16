@@ -64,7 +64,7 @@
     <p-dropdown formControlName="font_renderer" [filter]="true" [options]="rendererList" placeholder="Select font renderer" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
 
     <div class="mt-3">
-      <p-button (onClick)="onSubmit()" type="submit" label="Generate" [disabled]="!form.valid"></p-button>
+      <p-button [loading]="loading" (onClick)="onSubmit()" type="submit" label="Generate" [disabled]="!form.valid"></p-button>
     </div>
 
 

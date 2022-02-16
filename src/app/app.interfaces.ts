@@ -9,3 +9,9 @@ export interface Font {
   label: string;
   value: string;
 }
+
+export interface CountdownResponse {
+  url: string;
+  size: number;
+  generation_time: number;
+}

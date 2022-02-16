@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import timezones from 'timezones-list';
-import {Font, TimeZone} from "../app.interfaces";
+import {CountdownResponse, Font, TimeZone} from "../app.interfaces";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import * as moment from "moment";
+import {CountdownService} from "../countdown.service";
 
 @Component({
   selector: 'app-form',
@@ -14,7 +15,9 @@ export class FormComponent implements OnInit {
   // @ts-ignore
   form: FormGroup;
 
-  @Output() onGenerate = new EventEmitter<any>();
+  @Output() dataGenerated = new EventEmitter<CountdownResponse>();
+  @Input() loading : boolean;
+  @Output() loadingData = new EventEmitter<boolean>();
 
   fontList: Font[] = [
     {
@@ -75,7 +78,8 @@ export class FormComponent implements OnInit {
   ];
 
   constructor(
-    private _fb : FormBuilder
+    private _fb : FormBuilder,
+    private _countdownService : CountdownService
   ) {
   }
 
@@ -123,12 +127,26 @@ export class FormComponent implements OnInit {
     });
   }
 
+  private setLoading(loading: boolean = true){
+    this.loading = loading;
+    this.loadingData.emit(this.loading);
+  }
+
   onSubmit() {
+
+    this.setLoading(true)
+
     const data = {
       ...this.form.value,
-      end_time: moment(this.form.get('end_time')?.value).format('YYYY-MM-DD HH:mm:ss'),
+      end_time: moment(this.form.get('end_time')?.value).format('YYYY-MM-DD HH:mm:00'),
       show_interval_text: this.form.get('show_interval_text')?.value ? 1 : 0
-    }
-    this.onGenerate.emit(data);
+    };
+
+    this._countdownService.getCountdown(data)
+      .subscribe((data) => {
+        this.dataGenerated.emit(data);
+        this.setLoading(false);
+      });
+
   }
 }

@@ -1,5 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {CountdownService} from "../countdown.service";
+import {CountdownResponse} from "../app.interfaces";
 
 @Component({
   selector: 'app-preview',
@@ -7,24 +8,29 @@ import {CountdownService} from "../countdown.service";
 })
 export class PreviewComponent implements OnInit {
 
-  data: any;
+  status :  'no_data' | 'data' | 'loading' = 'no_data';
+
   imageSrc: string = '';
   code: string = '';
   size? : string;
+  generationTime: number;
 
   constructor(private _countdownService: CountdownService) { }
 
   ngOnInit(): void {
   }
 
-  generatePreview(data: any) {
-    this.data = data;
-    this._countdownService.getCountdownUrl(data)
-      .subscribe(({url, size}) => {
-        this.size = this._countdownService.formatBytes(size);
-        this.imageSrc = url;
-        this.code = `<img src="${this.imageSrc}">`;
-      });
+  generatePreview({size, generation_time, url}: CountdownResponse) {
+    this.status = 'data';
+    this.size = this._countdownService.formatBytes(size);
+    this.generationTime = generation_time;
+    this.imageSrc = url;
+    this.code = `<img src="${this.imageSrc}">`;
   }
 
+  setLoading(loading: boolean) {
+    if (loading){
+      this.status = 'loading';
+    }
+  }
 }

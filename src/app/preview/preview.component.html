@@ -1,15 +1,20 @@
-<div *ngIf="data; else waitingForData">
+<div *ngIf="status === 'loading'">
+  <p>LOADING ...</p>
+</div>
+<div *ngIf="status === 'data'">
   <h4>Preview</h4>
   <img width="100%" height="auto" [src]="imageSrc">
   <h4>Size</h4>
   <p>{{ size }}</p>
+  <h4>Generation Time</h4>
+  <p>{{ generationTime | number}} seconds</p>
   <h4>HTML</h4>
   <div>
     <textarea pInputTextarea style="width:100%;" rows="8" [value]="code"></textarea>
   </div>
 </div>
-<ng-template #waitingForData>
-  <div class="bg-cyan-500 text-white font-bold border-round m-2 flex align-items-center justify-content-center"
-       style="min-width: 200px; min-height: 100px">Set data and generate preview!
-  </div>
-</ng-template>
+
+<div *ngIf="status === 'no_data'"
+     class="bg-cyan-500 text-white font-bold border-round m-2 flex align-items-center justify-content-center"
+     style="min-width: 200px; min-height: 100px">Set data and generate preview!
+</div>

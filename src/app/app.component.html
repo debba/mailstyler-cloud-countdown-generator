@@ -1,7 +1,7 @@
 <div class="card">
   <div class="flex card-container indigo-container">
     <div class="flex-1 bg-gray-50 font-bold p-4 border-round">
-      <app-form (onGenerate)="generatePreview($event)"></app-form>
+      <app-form (loadingData)="setLoadingData($event)" (dataGenerated)="setPreviewData($event)"></app-form>
     </div>
     <div class="flex-1 bg-gray-50 font-bold text-center p-4 border-round mx-4">
       <app-preview #preview></app-preview>

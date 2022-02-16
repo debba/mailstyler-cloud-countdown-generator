@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, tap} from "rxjs/operators";
+import {map, mapTo, tap} from "rxjs/operators";
+import * as moment from "moment";
+import {Observable} from "rxjs";
+import {CountdownResponse} from "./app.interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -26,13 +29,22 @@ export class CountdownService {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
-  getCountdownUrl(data: any) {
-    const url = this.serviceUrl + "?" + Object.keys(data).map(key => key + '=' + encodeURIComponent(data[key])).join('&');
-    return this.http.get(url, {
+  getCountdown(params: any) {
+    return this.http.get(this.serviceUrl, {
+      params: {
+        ...params,
+        ts: moment().unix()
+      },
       observe: 'response',
       responseType: 'blob'
     }).pipe(
-      map(res => ({url: url, size: res.body?.size || 0}))
+      map(res => (<CountdownResponse>{
+        headers: res.headers,
+        url: res.url,
+        size: res.body?.size,
+        generation_time: parseFloat(res.headers.get('x-countdown-time'))
+      })),
+      tap(res => console.log(res))
     );
   }
 }
