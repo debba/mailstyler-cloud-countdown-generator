@@ -4,9 +4,9 @@
 
     <p-dropdown formControlName="time_zone" [filter]="true" [options]="timezoneList" placeholder="Select a timezone" optionLabel="label" optionValue="tzCode" [showClear]="true"></p-dropdown>
 
-    <h4>When does your timer end? (max 30 days)</h4>
+    <h4>When does your timer end? (max 90 days)</h4>
 
-    <p-calendar formControlName="end_time" [showTime]="true" [minDate]="todayDateNoHours"></p-calendar>
+    <p-calendar formControlName="end_time" [showTime]="true" [minDate]="todayDateNoHours" [maxDate]="maxDateNoHours"></p-calendar>
 
     <h4>Font</h4>
 
@@ -50,6 +50,10 @@
     <h4>Frame size</h4>
 
     <p-inputNumber [min]="61" [max]="181" formControlName="frame_size"></p-inputNumber>
+
+    <h4>Renderer</h4>
+
+    <p-dropdown formControlName="font_renderer" [filter]="true" [options]="rendererList" placeholder="Select font renderer" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
 
     <div class="mt-3">
       <p-button (onClick)="onSubmit()" type="submit" label="Generate" [disabled]="!form.valid"></p-button>

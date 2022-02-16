@@ -36,12 +36,28 @@ export class FormComponent implements OnInit {
     {
       label: 'Saxmono',
       value: 'Saxmono'
+    },
+    {
+      label: 'Digital7',
+      value: 'Digital7'
     }
   ]
   //@ts-ignore
   todayDateNoHours: Date;
 
   maxLength: number = 64;
+  // @ts-ignore
+  maxDateNoHours: Date;
+  rendererList = [
+    {
+      label: 'Freetype 2',
+      value: 'freetype'
+    },
+    {
+      label: 'Truetype',
+      value: 'ttf'
+    },
+  ]
 
   constructor(
     private _fb : FormBuilder
@@ -69,6 +85,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
 
     this.todayDateNoHours = moment(this.todayDate).toDate();
+    this.maxDateNoHours = moment(this.todayDate).add(3, 'M').toDate();
 
     this.form = this._fb.group({
       time_zone: [this.myTimezone, Validators.required],
@@ -81,7 +98,8 @@ export class FormComponent implements OnInit {
       background_color: ['#ffffff', Validators.required],
       font_color: ['#000000', Validators.required],
       font_name:['Noto', Validators.required],
-      frame_size:[61, Validators.required]
+      frame_size:[61, Validators.required],
+      font_renderer:['freetype', Validators.required]
     });
   }
 
