@@ -97,6 +97,10 @@ export class FormComponent implements OnInit {
     return this.form.get('show_interval_text')?.value;
   }
 
+  get isPlainStyle(){
+    return this.form.get('style')?.value === 'plain';
+  }
+
   ngOnInit(): void {
 
     this.todayDateNoHours = moment(this.todayDate).toDate();

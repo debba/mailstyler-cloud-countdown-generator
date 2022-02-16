@@ -41,9 +41,13 @@
       </div>
     </div>
 
+    <div *ngIf="isPlainStyle">
+
     <h4>Background color</h4>
 
     <p-colorPicker formControlName="background_color"  [inline]="false" [style]="{'width':'100%'}"></p-colorPicker>
+
+    </div>
 
 
     <h4>Text color</h4>
