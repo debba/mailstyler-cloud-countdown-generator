@@ -41,6 +41,8 @@ export class FormComponent implements OnInit {
   //@ts-ignore
   todayDateNoHours: Date;
 
+  maxLength: number = 64;
+
   constructor(
     private _fb : FormBuilder
   ) {
@@ -72,10 +74,10 @@ export class FormComponent implements OnInit {
       time_zone: [this.myTimezone, Validators.required],
       end_time: [this.tomorrowDate, Validators.required],
       show_interval_text: [true, Validators.required],
-      days_text: ['days', Validators.required],
-      hours_text: ['hours', Validators.required],
-      minutes_text: ['minutes', Validators.required],
-      seconds_text: ['seconds', Validators.required],
+      days_text: ['days', Validators.maxLength(this.maxLength)],
+      hours_text: ['hours', Validators.maxLength(this.maxLength)],
+      minutes_text: ['minutes', Validators.maxLength(this.maxLength)],
+      seconds_text: ['seconds', Validators.maxLength(this.maxLength)],
       background_color: ['#ffffff', Validators.required],
       font_color: ['#000000', Validators.required],
       font_name:['Noto', Validators.required],

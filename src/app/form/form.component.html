@@ -20,19 +20,19 @@
       <div class="grid">
         <div class="col-6 field">
           <h5>Days Text</h5>
-          <input type="text"  pInputText formControlName="days_text" placeholder="Days text">
+          <input type="text"  pInputText [maxlength]="maxLength" formControlName="days_text" placeholder="Days text">
         </div>
         <div class="col-6 field">
           <h5>Hours Text</h5>
-          <input type="text"  pInputText formControlName="hours_text" placeholder="Days text">
+          <input type="text"  pInputText [maxlength]="maxLength" formControlName="hours_text" placeholder="Hours text">
         </div>
         <div class="col-6 field">
           <h5>Minutes Text</h5>
-          <input type="text"  pInputText formControlName="minutes_text" placeholder="Days text">
+          <input type="text"  pInputText [maxlength]="maxLength" formControlName="minutes_text" placeholder="Minutes text">
         </div>
         <div class="col-6 field">
           <h5>Seconds Text</h5>
-          <input type="text"  pInputText formControlName="seconds_text" placeholder="Days text">
+          <input type="text"  pInputText [maxlength]="maxLength" formControlName="seconds_text" placeholder="Seconds text">
         </div>
       </div>
     </div>
