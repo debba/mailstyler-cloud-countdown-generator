@@ -57,7 +57,22 @@ export class FormComponent implements OnInit {
       label: 'Truetype',
       value: 'ttf'
     },
-  ]
+  ];
+
+  stylesList = [
+    {
+      label: 'Plain',
+      value: 'plain'
+    },
+    {
+      label: 'Light',
+      value: 'countdown_light'
+    },
+    {
+      label: 'Dark',
+      value: 'countdown_dark'
+    }
+  ];
 
   constructor(
     private _fb : FormBuilder
@@ -99,7 +114,8 @@ export class FormComponent implements OnInit {
       font_color: ['#000000', Validators.required],
       font_name:['Noto', Validators.required],
       frame_size:[61, Validators.required],
-      font_renderer:['freetype', Validators.required]
+      font_renderer:['freetype', Validators.required],
+      style: [this.stylesList[0].value, Validators.required]
     });
   }
 

@@ -8,6 +8,10 @@
 
     <p-calendar formControlName="end_time" [showTime]="true" [minDate]="todayDateNoHours" [maxDate]="maxDateNoHours"></p-calendar>
 
+    <h4>Style</h4>
+
+    <p-dropdown formControlName="style" [filter]="true" [options]="stylesList" placeholder="Select style" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
+
     <h4>Font</h4>
 
     <p-dropdown formControlName="font_name" [filter]="true" [options]="fontList" placeholder="Select a font" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
