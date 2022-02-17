@@ -1,3 +1,5 @@
+import {SelectItem} from "primeng/api";
+
 export interface TimeZone {
   label: string;
   tzCode: string;
@@ -5,13 +7,18 @@ export interface TimeZone {
   utc: string;
 }
 
-export interface Font {
-  label: string;
-  value: string;
-}
 
 export interface CountdownResponse {
   url: string;
   size: number;
   generation_time: number;
+}
+
+export interface CountdownEnv {
+  fonts: SelectItem<string>[];
+  styles: SelectItem<string>[];
+  renderers: SelectItem<string>[];
+  footer_text_max_length: number;
+  min_frame_size: number;
+  max_frame_size: number;
 }

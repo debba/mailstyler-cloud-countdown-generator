@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {map, mapTo, tap} from "rxjs/operators";
 import * as moment from "moment";
 import {Observable} from "rxjs";
-import {CountdownResponse} from "./app.interfaces";
+import {CountdownEnv, CountdownResponse} from "./app.interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -44,4 +44,9 @@ export class CountdownService {
       tap(res => console.log(res))
     );
   }
+
+  getEnv(){
+    return this.http.get<CountdownEnv>(`${this.serviceUrl}/env`);
+  }
+
 }

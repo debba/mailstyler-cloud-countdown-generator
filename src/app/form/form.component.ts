@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import timezones from 'timezones-list';
-import {CountdownResponse, Font, TimeZone} from "../app.interfaces";
+import {CountdownResponse, TimeZone} from "../app.interfaces";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import * as moment from "moment";
 import {CountdownService} from "../countdown.service";
+import {SelectItem} from "primeng/api";
 
 @Component({
   selector: 'app-form',
@@ -19,63 +20,19 @@ export class FormComponent implements OnInit {
   @Input() loading : boolean;
   @Output() loadingData = new EventEmitter<boolean>();
 
-  fontList: Font[] = [
-    {
-      label: 'Noto',
-      value: 'Noto'
-    },
-    {
-      label: 'Arial',
-      value: 'Arial'
-    },
-    {
-      label: 'Verdana',
-      value: 'Verdana'
-    },
-    {
-      label: 'CourierNew',
-      value: 'CourierNew'
-    },
-    {
-      label: 'Saxmono',
-      value: 'Saxmono'
-    },
-    {
-      label: 'Digital7',
-      value: 'Digital7'
-    }
-  ]
+  fontList: SelectItem<string>[] = [];
   //@ts-ignore
   todayDateNoHours: Date;
 
-  maxLength: number = 64;
+  maxLength: number = 16;
   // @ts-ignore
   maxDateNoHours: Date;
-  rendererList = [
-    {
-      label: 'Freetype 2',
-      value: 'freetype'
-    },
-    {
-      label: 'Truetype',
-      value: 'ttf'
-    },
-  ];
+  rendererList: SelectItem<string>[] = [];
 
-  stylesList = [
-    {
-      label: 'Plain',
-      value: 'plain'
-    },
-    {
-      label: 'Light',
-      value: 'countdown_light'
-    },
-    {
-      label: 'Dark',
-      value: 'countdown_dark'
-    }
-  ];
+  stylesList: SelectItem<string>[] = [];
+
+  minFrameSize: number = 61;
+  maxFrameSize: number = 181;
 
   constructor(
     private _fb : FormBuilder,
@@ -120,11 +77,26 @@ export class FormComponent implements OnInit {
       seconds_text: ['seconds', Validators.maxLength(this.maxLength)],
       background_color: ['#ffffff', Validators.required],
       font_color: ['#000000', Validators.required],
-      font_name:['Noto', Validators.required],
-      frame_size:[61, Validators.required],
-      font_renderer:['freetype', Validators.required],
-      style: [this.stylesList[0].value, Validators.required]
+      font_name:[null, Validators.required],
+      frame_size:[this.minFrameSize, Validators.required],
+      font_renderer:[null, Validators.required],
+      style: [null, Validators.required]
     });
+
+    this._countdownService.getEnv().subscribe(res => {
+      this.stylesList = res.styles;
+      this.fontList = res.fonts;
+      this.rendererList = res.renderers;
+      this.maxLength = res.footer_text_max_length;
+      this.minFrameSize = res.min_frame_size;
+      this.maxFrameSize = res.max_frame_size;
+      this.form.patchValue({
+        style: this.stylesList[0].value,
+        font_renderer: this.rendererList[0].value,
+        font_name: this.fontList[0].value
+      })
+    })
+
   }
 
   private setLoading(loading: boolean = true){
