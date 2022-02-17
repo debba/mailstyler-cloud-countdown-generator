@@ -31,10 +31,7 @@ export class CountdownService {
 
   getCountdown(params: any) {
     return this.http.get(this.serviceUrl, {
-      params: {
-        ...params,
-        ts: moment().unix()
-      },
+      params,
       observe: 'response',
       responseType: 'blob'
     }).pipe(
