@@ -17,7 +17,7 @@ export class CountdownService {
   ) {
   }
 
-  formatBytes(bytes : number, decimals = 2) {
+  formatBytes(bytes: number, decimals = 2) {
     if (bytes === 0) return '0 Bytes';
 
     const k = 1024;
@@ -31,7 +31,10 @@ export class CountdownService {
 
   getCountdown(params: any) {
     return this.http.get(this.serviceUrl, {
-      params,
+      params: {
+        ...params,
+        ts: moment().unix()
+      },
       observe: 'response',
       responseType: 'blob'
     }).pipe(
@@ -45,7 +48,7 @@ export class CountdownService {
     );
   }
 
-  getEnv(){
+  getEnv() {
     return this.http.get<CountdownEnv>(`${this.serviceUrl}/env`);
   }
 
