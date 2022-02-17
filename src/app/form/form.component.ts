@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import timezones from 'timezones-list';
 import {CountdownResponse, TimeZone} from "../app.interfaces";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import * as moment from "moment";
@@ -12,7 +11,7 @@ import {SelectItem} from "primeng/api";
 })
 export class FormComponent implements OnInit {
 
-  timezoneList: TimeZone[] = timezones;
+  timezoneList: TimeZone[] = [];
   // @ts-ignore
   form: FormGroup;
 
@@ -84,6 +83,7 @@ export class FormComponent implements OnInit {
     });
 
     this._countdownService.getEnv().subscribe(res => {
+      this.timezoneList = res.timezones;
       this.stylesList = res.styles;
       this.fontList = res.fonts;
       this.rendererList = res.renderers;

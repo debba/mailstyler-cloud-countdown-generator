@@ -7,7 +7,6 @@ export interface TimeZone {
   utc: string;
 }
 
-
 export interface CountdownResponse {
   url: string;
   size: number;
@@ -17,6 +16,7 @@ export interface CountdownResponse {
 export interface CountdownEnv {
   fonts: SelectItem<string>[];
   styles: SelectItem<string>[];
+  timezones: TimeZone[];
   renderers: SelectItem<string>[];
   footer_text_max_length: number;
   min_frame_size: number;
