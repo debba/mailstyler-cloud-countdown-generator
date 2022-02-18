@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, mapTo, tap} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 import * as moment from "moment";
-import {Observable} from "rxjs";
 import {CountdownEnv, CountdownResponse} from "./app.interfaces";
 
 @Injectable({
