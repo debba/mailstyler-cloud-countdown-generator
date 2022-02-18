@@ -76,6 +76,7 @@ export class FormComponent implements OnInit {
       seconds_text: ['seconds', Validators.maxLength(this.maxLength)],
       background_color: ['#ffffff', Validators.required],
       font_color: ['#000000', Validators.required],
+      footer_font_color: ['#000000', Validators.required],
       font_name:[null, Validators.required],
       frame_size:[this.minFrameSize, Validators.required],
       font_renderer:[null, Validators.required],
