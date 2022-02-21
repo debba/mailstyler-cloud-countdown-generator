@@ -74,7 +74,8 @@ export class FormComponent implements OnInit {
       hours_text: ['hours', Validators.maxLength(this.maxLength)],
       minutes_text: ['minutes', Validators.maxLength(this.maxLength)],
       seconds_text: ['seconds', Validators.maxLength(this.maxLength)],
-
+      separator: [':'],
+      separator_color: ['#000000', Validators.required],
       background_color: ['#ffffff', Validators.required],
       font_color: ['#000000', Validators.required],
       footer_font_color: ['#000000', Validators.required],

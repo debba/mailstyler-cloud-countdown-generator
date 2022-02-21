@@ -25,8 +25,19 @@
         <p-dropdown id="font_name" styleClass="inputfield w-full"  formControlName="font_name" [filter]="true" [options]="fontList" placeholder="Select a font" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
       </div>
       <div class="field  col-12 md:col-3">
-        <label for="interval_text_color">Interval text color</label>
+        <label for="interval_text_color">Interval color</label>
         <p-colorPicker id="interval_text_color" styleClass="inputfield w-full"  formControlName="font_color"  [inline]="false"></p-colorPicker>
+      </div>
+    </div>
+
+    <div class="formgrid grid mt-2">
+      <div class="field col-12 md:col-3">
+        <label for="separator">Separator</label>
+        <input type="text" maxlength="1" pInputText id="separator" class="inputfield w-full" formControlName="separator">
+      </div>
+      <div class="field  col-12 md:col-3">
+        <label for="separator_color">Separator color</label>
+        <p-colorPicker id="separator_color" styleClass="inputfield w-full"  formControlName="separator_color"  [inline]="false"></p-colorPicker>
       </div>
     </div>
 
