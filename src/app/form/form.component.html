@@ -11,21 +11,20 @@
       </div>
     </div>
 
-    <h4>Style</h4>
-
-    <p-dropdown formControlName="style" [filter]="true" [options]="stylesList" placeholder="Select style" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
-
-
     <div class="formgrid grid mt-2">
-      <div class="col-12 md:col-3">
+      <div class="field col-12 md:col-3">
+        <label for="style">Style</label>
+        <p-dropdown id="style" styleClass="inputfield w-full" formControlName="style" [filter]="true" [options]="stylesList" placeholder="Select style" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
+      </div>
+      <div class="field col-12 md:col-3">
         <label for="background_color">Background color</label>
         <p-colorPicker styleClass="inputfield w-full"  id="background_color" formControlName="background_color"  [inline]="false" [style]="{'width':'100%'}"></p-colorPicker>
       </div>
-      <div class="col-12 md:col-3">
+      <div class="field col-12 md:col-3">
         <label for="font_name">Interval font</label>
         <p-dropdown id="font_name" styleClass="inputfield w-full"  formControlName="font_name" [filter]="true" [options]="fontList" placeholder="Select a font" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
       </div>
-      <div class="col-12 md:col-3">
+      <div class="field  col-12 md:col-3">
         <label for="interval_text_color">Interval text color</label>
         <p-colorPicker id="interval_text_color" styleClass="inputfield w-full"  formControlName="font_color"  [inline]="false"></p-colorPicker>
       </div>
