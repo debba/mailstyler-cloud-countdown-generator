@@ -58,6 +58,11 @@
 
     <p-colorPicker formControlName="footer_font_color"  [inline]="false" [style]="{'width':'100%'}"></p-colorPicker>
 
+    <h4>Footer font name</h4>
+
+    <p-dropdown formControlName="footer_font_name" [filter]="true" [options]="fontList" placeholder="Select a font" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
+
+
 
     <h4>Frame size</h4>
 

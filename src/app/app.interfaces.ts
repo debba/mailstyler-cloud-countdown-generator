@@ -18,6 +18,7 @@ export interface CountdownEnv {
   styles: SelectItem<string>[];
   timezones: TimeZone[];
   renderers: SelectItem<string>[];
+  default_font_name: string;
   footer_text_max_length: number;
   min_frame_size: number;
   max_frame_size: number;

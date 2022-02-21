@@ -74,16 +74,19 @@ export class FormComponent implements OnInit {
       hours_text: ['hours', Validators.maxLength(this.maxLength)],
       minutes_text: ['minutes', Validators.maxLength(this.maxLength)],
       seconds_text: ['seconds', Validators.maxLength(this.maxLength)],
+
       background_color: ['#ffffff', Validators.required],
       font_color: ['#000000', Validators.required],
       footer_font_color: ['#000000', Validators.required],
       font_name:[null, Validators.required],
+      footer_font_name:[null],
       frame_size:[this.minFrameSize, Validators.required],
       font_renderer:[null, Validators.required],
       style: [null, Validators.required]
     });
 
     this._countdownService.getEnv().subscribe(res => {
+      console.log({res});
       this.timezoneList = res.timezones;
       this.stylesList = res.styles;
       this.fontList = res.fonts;
@@ -94,7 +97,8 @@ export class FormComponent implements OnInit {
       this.form.patchValue({
         style: this.stylesList[0].value,
         font_renderer: this.rendererList[0].value,
-        font_name: this.fontList[0].value
+        font_name: res.default_font_name,
+        footer_font_name: res.default_font_name
       })
     })
 
