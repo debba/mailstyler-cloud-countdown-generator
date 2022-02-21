@@ -1,20 +1,37 @@
 <div class="card">
   <div [formGroup]="form">
-    <h4>Time Zone</h4>
-
-    <p-dropdown formControlName="time_zone" [filter]="true" [options]="timezoneList" placeholder="Select a timezone" optionLabel="label" optionValue="tzCode" [showClear]="true"></p-dropdown>
-
-    <h4>When does your timer end? (max 90 days)</h4>
-
-    <p-calendar formControlName="end_time" [showTime]="true" [minDate]="todayDateNoHours" [maxDate]="maxDateNoHours"></p-calendar>
+    <div class="formgrid grid">
+      <div class="field col">
+        <label for="timezone">Timezone</label>
+        <p-dropdown styleClass="inputfield w-full" id="timezone" formControlName="time_zone" [filter]="true" [options]="timezoneList" placeholder="Select a timezone" optionLabel="label" optionValue="tzCode" [showClear]="true"></p-dropdown>
+      </div>
+      <div class="field col">
+        <label for="end_time">When does your timer end? (max 90 days)</label>
+        <p-calendar styleClass="inputfield w-full" id="end_time" formControlName="end_time" [showTime]="true" [minDate]="todayDateNoHours" [maxDate]="maxDateNoHours"></p-calendar>
+      </div>
+    </div>
 
     <h4>Style</h4>
 
     <p-dropdown formControlName="style" [filter]="true" [options]="stylesList" placeholder="Select style" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
 
-    <h4>Font</h4>
 
-    <p-dropdown formControlName="font_name" [filter]="true" [options]="fontList" placeholder="Select a font" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
+    <div class="formgrid grid mt-2">
+      <div class="col-12 md:col-3">
+        <label for="background_color">Background color</label>
+        <p-colorPicker styleClass="inputfield w-full"  id="background_color" formControlName="background_color"  [inline]="false" [style]="{'width':'100%'}"></p-colorPicker>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="font_name">Interval font</label>
+        <p-dropdown id="font_name" styleClass="inputfield w-full"  formControlName="font_name" [filter]="true" [options]="fontList" placeholder="Select a font" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="interval_text_color">Interval text color</label>
+        <p-colorPicker id="interval_text_color" styleClass="inputfield w-full"  formControlName="font_color"  [inline]="false"></p-colorPicker>
+      </div>
+    </div>
+
+
 
     <h4>Text</h4>
 
@@ -41,18 +58,7 @@
       </div>
     </div>
 
-    <div>
 
-    <h4>Background color</h4>
-
-    <p-colorPicker formControlName="background_color"  [inline]="false" [style]="{'width':'100%'}"></p-colorPicker>
-
-    </div>
-
-
-    <h4>Interval text color</h4>
-
-    <p-colorPicker formControlName="font_color"  [inline]="false" [style]="{'width':'100%'}"></p-colorPicker>
 
     <h4>Footer text color</h4>
 
