@@ -83,7 +83,7 @@ export class FormComponent implements OnInit {
       footer_font_name:[null],
       frame_size:[this.minFrameSize, Validators.required],
       font_renderer:[null, Validators.required],
-      style: [null, Validators.required]
+      background_effect: [null, Validators.required]
     });
 
     this._countdownService.getEnv().subscribe(res => {
@@ -96,7 +96,7 @@ export class FormComponent implements OnInit {
       this.minFrameSize = res.min_frame_size;
       this.maxFrameSize = res.max_frame_size;
       this.form.patchValue({
-        style: this.stylesList[0].value,
+        background_effect: this.stylesList[0].value,
         font_renderer: this.rendererList[0].value,
         font_name: res.default_font_name,
         footer_font_name: res.default_font_name
