@@ -61,6 +61,10 @@ export class FormComponent implements OnInit {
     return this.form.get('style')?.value === 'plain';
   }
 
+  get devuser(){
+    return this._countdownService.devuser;
+  }
+
   ngOnInit(): void {
 
     this.todayDateNoHours = moment(this.todayDate).toDate();
@@ -124,6 +128,12 @@ export class FormComponent implements OnInit {
         this.dataGenerated.emit(data);
         this.setLoading(false);
       });
+
+  }
+
+  removeDevUser() {
+    this._countdownService.removeDevUser();
+    document.location = String(document.location).replace(/\?.*$/, '');
 
   }
 }

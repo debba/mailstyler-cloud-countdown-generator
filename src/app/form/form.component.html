@@ -1,5 +1,11 @@
 <div class="card">
   <div [formGroup]="form">
+    <div class="formgrid grid" *ngIf="devuser">
+      <div class="field col">
+        <label>Devuser</label>
+        <p>{{devuser}} <span (click)="removeDevUser()" class="pi pi-times"></span></p>
+      </div>
+    </div>
     <div class="formgrid grid">
       <div class="field col">
         <label for="timezone">Timezone</label>
