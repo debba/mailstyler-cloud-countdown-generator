@@ -87,7 +87,6 @@ export class FormComponent implements OnInit {
     });
 
     this._countdownService.getEnv().subscribe(res => {
-      console.log({res});
       this.timezoneList = res.timezones;
       this.stylesList = res.styles;
       this.fontList = res.fonts;

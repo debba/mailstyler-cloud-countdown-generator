@@ -23,7 +23,6 @@ export class AppComponent implements OnInit{
   }
 
   setLoadingData(loading: boolean) {
-    console.log('loading = ', loading);
     this.preview.setLoading(loading);
   }
 }

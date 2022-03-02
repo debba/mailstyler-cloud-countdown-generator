@@ -42,8 +42,7 @@ export class CountdownService {
         url: res.url,
         size: res.body?.size,
         generation_time: parseFloat(res.headers.get('x-countdown-time'))
-      })),
-      tap(res => console.log(res))
+      }))
     );
   }
 
