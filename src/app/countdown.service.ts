@@ -35,6 +35,10 @@ export class CountdownService {
   private getServiceUrl() {
     let serviceUrl = this.serviceUrl;
     if (this.devuser) {
+      if (this.devuser === 'aws'){
+        serviceUrl = 'https://eay2h7k3ue.execute-api.us-east-1.amazonaws.com/generate';
+      }
+
       serviceUrl = `https://${this.devuser}.dev.editor.mailstyler.com`;
     }
     return `${serviceUrl}${this.countdownPath}`;
