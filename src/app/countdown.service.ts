@@ -12,6 +12,7 @@ export class CountdownService {
 
   private readonly countdownPath = '/apps/api/v1/utils/elements/countdown';
   private readonly serviceUrl = `${environment.serviceUrl}`;
+  private readonly serviceAwsUrl = 'https://eay2h7k3ue.execute-api.us-east-1.amazonaws.com/generate';
 
   constructor(
     private http: HttpClient
@@ -35,11 +36,8 @@ export class CountdownService {
   private getServiceUrl() {
     let serviceUrl = this.serviceUrl;
     if (this.devuser) {
-      if (this.devuser === 'aws'){
-        serviceUrl = 'https://eay2h7k3ue.execute-api.us-east-1.amazonaws.com/generate';
-      }
-
-      serviceUrl = `https://${this.devuser}.dev.editor.mailstyler.com`;
+      const devuser = this.devuser === 'aws' ? 'andreadb' : this.devuser;
+      serviceUrl = `https://${devuser}.dev.editor.mailstyler.com`;
     }
     return `${serviceUrl}${this.countdownPath}`;
   }
@@ -57,7 +55,8 @@ export class CountdownService {
   }
 
   getCountdown(params: any) {
-    return this.http.get(this.getServiceUrl(), {
+    return this.http.get(
+      this.devuser && this.devuser === 'aws' ? this.serviceAwsUrl : this.getServiceUrl(), {
       params: {
         ...params,
         ts: moment().unix()
